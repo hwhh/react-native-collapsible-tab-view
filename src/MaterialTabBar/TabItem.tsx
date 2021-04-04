@@ -74,12 +74,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 10,
     height: TABBAR_HEIGHT,
   },
   label: {
+    fontSize:19,
+    fontWeight:'400',
     margin: 4,
   },
 })

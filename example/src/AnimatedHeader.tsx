@@ -1,20 +1,17 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import { useHeaderMeasurements } from 'react-native-collapsible-tab-view'
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated'
+import {StyleSheet, Text, View} from 'react-native'
+import {useHeaderMeasurements} from 'react-native-collapsible-tab-view'
+import Animated, {interpolate, useAnimatedStyle,} from 'react-native-reanimated'
 
 import ExampleComponent from './Shared/ExampleComponent'
-import { ExampleComponentType } from './types'
+import {ExampleComponentType} from './types'
 
 const title = 'Animated Header'
 
 const MIN_HEADER_HEIGHT = 48
 
 export const Header = () => {
-  const { top, height } = useHeaderMeasurements()
+  const {top, height} = useHeaderMeasurements()
 
   const stylez = useAnimatedStyle(() => {
     return {
@@ -29,7 +26,7 @@ export const Header = () => {
       ],
     }
   })
-
+  //
   return (
     <View style={[styles.root]}>
       <Animated.View style={[styles.container, stylez]}>
@@ -50,11 +47,11 @@ const Example: ExampleComponentType = () => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#3961D5',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    height: 250,
+    height: 450,
   },
   container: {
     height: MIN_HEADER_HEIGHT,

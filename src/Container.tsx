@@ -493,7 +493,7 @@ export const Container = React.memo(
               <View
                 style={[styles.container, styles.tabBarContainer]}
                 onLayout={getTabBarHeight}
-                pointerEvents="box-none"
+                pointerEvents="none"
               >
                 {TabBarComponent && (
                   <TabBarComponent
@@ -512,6 +512,10 @@ export const Container = React.memo(
               <AnimatedFlatList
                 // @ts-expect-error problem with reanimated types, they're missing `ref`
                 ref={containerRef}
+                // ListHeaderComponent={() =>{
+                //     <
+                //
+                // }}
                 initialScrollIndex={index.value}
                 data={data}
                 keyExtractor={keyExtractor}
@@ -543,16 +547,17 @@ const styles = StyleSheet.create({
     zIndex: 100,
     width: '100%',
     backgroundColor: 'white',
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.23,
+    // shadowRadius: 2.62,
+    // elevation: 4,
   },
   tabBarContainer: {
+      backgroundColor:'#3961D5',
     zIndex: 1,
   },
   headerContainer: {

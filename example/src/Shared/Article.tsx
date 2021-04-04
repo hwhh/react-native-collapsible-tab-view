@@ -53,7 +53,7 @@ const Article: React.FC<object> = () => {
         <RefreshControl refreshing={isRefreshing} onRefresh={startRefreshing} />
       }
     >
-      <ArticleContent />
+      <View style={{ flex: 1, backgroundColor: 'white' }} />
     </Tabs.ScrollView>
   )
 }

@@ -105,43 +105,43 @@ const ExampleList: React.FC<object> = () => {
         translucent
         barStyle={Platform.OS === 'ios' ? statusBarStyle : 'light-content'}
       />
-      <View
-        style={[
-          styles.appbar,
-          backgroundColor ? { backgroundColor } : null,
-          appbarElevation
-            ? { elevation: appbarElevation, borderBottomWidth }
-            : null,
-        ]}
-      >
-        <View style={styles.statusbar} />
-        <SafeAreaView>
-          <View style={styles.content}>
-            {index > -1 ? (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleNavigateBack}
-              >
-                <Ionicons
-                  name={
-                    Platform.OS === 'android'
-                      ? 'md-arrow-back'
-                      : 'ios-arrow-back'
-                  }
-                  size={24}
-                  color={tintColor}
-                />
-              </TouchableOpacity>
-            ) : null}
-            <Text
-              style={[styles.title, tintColor ? { color: tintColor } : null]}
-            >
-              {index > -1 ? EXAMPLE_COMPONENTS[index].title : title}
-            </Text>
-            {index > -1 ? <View style={styles.button} /> : null}
-          </View>
-        </SafeAreaView>
-      </View>
+      {/*<View*/}
+      {/*  style={[*/}
+      {/*    styles.appbar,*/}
+      {/*    backgroundColor ? { backgroundColor } : null,*/}
+      {/*    appbarElevation*/}
+      {/*      ? { elevation: appbarElevation, borderBottomWidth }*/}
+      {/*      : null,*/}
+      {/*  ]}*/}
+      {/*>*/}
+      {/*  /!*<View style={styles.statusbar} />*!/*/}
+      {/*  <SafeAreaView>*/}
+      {/*    <View style={styles.content}>*/}
+      {/*      {index > -1 ? (*/}
+      {/*        <TouchableOpacity*/}
+      {/*          style={styles.button}*/}
+      {/*          onPress={handleNavigateBack}*/}
+      {/*        >*/}
+      {/*          <Ionicons*/}
+      {/*            name={*/}
+      {/*              Platform.OS === 'android'*/}
+      {/*                ? 'md-arrow-back'*/}
+      {/*                : 'ios-arrow-back'*/}
+      {/*            }*/}
+      {/*            size={24}*/}
+      {/*            color={tintColor}*/}
+      {/*          />*/}
+      {/*        </TouchableOpacity>*/}
+      {/*      ) : null}*/}
+      {/*      <Text*/}
+      {/*        style={[styles.title, tintColor ? { color: tintColor } : null]}*/}
+      {/*      >*/}
+      {/*        {index > -1 ? EXAMPLE_COMPONENTS[index].title : title}*/}
+      {/*      </Text>*/}
+      {/*      {index > -1 ? <View style={styles.button} /> : null}*/}
+      {/*    </View>*/}
+      {/*  </SafeAreaView>*/}
+      {/*</View>*/}
       {index === -1 ? (
         <ScrollView>{EXAMPLE_COMPONENTS.map(renderItem)}</ScrollView>
       ) : ExampleComponent ? (
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     }),
   },
   appbar: {
+
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     zIndex: 1,
   },

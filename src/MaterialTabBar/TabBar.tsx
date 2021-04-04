@@ -1,8 +1,9 @@
 import React from 'react'
 import {
+  LayoutChangeEvent,
   StyleSheet,
   useWindowDimensions,
-  LayoutChangeEvent,
+  View,
 } from 'react-native'
 import Animated, {
   cancelAnimation,
@@ -17,7 +18,7 @@ import Animated, {
 import { TabName } from '../types'
 import { Indicator } from './Indicator'
 import { MaterialTabItem } from './TabItem'
-import { MaterialTabBarProps, ItemLayout } from './types'
+import { ItemLayout, MaterialTabBarProps } from './types'
 
 export const TABBAR_HEIGHT = 48
 
@@ -68,6 +69,8 @@ const MaterialTabBar = <T extends TabName = any>({
   const isScrolling = useSharedValue(false)
 
   const nTabs = tabNames.length
+
+  console.log(scrollEnabled)
 
   const [itemsLayout, setItemsLayout] = React.useState<ItemLayout[]>(
     scrollEnabled
@@ -183,7 +186,19 @@ const MaterialTabBar = <T extends TabName = any>({
     <Animated.ScrollView
       ref={tabBarRef}
       horizontal
-      style={style}
+      style={{
+        backgroundColor: 'white',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        shadowColor: '#000000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+      }}
       contentContainerStyle={[
         styles.contentContainer,
         !scrollEnabled && { width: windowWidth },
@@ -200,36 +215,50 @@ const MaterialTabBar = <T extends TabName = any>({
       onScroll={scrollEnabled ? onScroll : undefined}
       scrollEventThrottle={16}
     >
-      {tabNames.map((name, i) => {
-        return (
-          <TabItemComponent
-            key={name}
-            index={i}
-            name={name}
-            label={tabProps.get(name)?.label || getLabelText(name)}
-            onPress={onTabPress}
-            onLayout={
-              scrollEnabled
-                ? (event) => onTabItemLayout(event, name)
-                : undefined
-            }
-            scrollEnabled={scrollEnabled}
-            indexDecimal={indexDecimal}
-            labelStyle={labelStyle}
-            activeColor={activeColor}
-            inactiveColor={inactiveColor}
-            style={tabStyle}
-          />
-        )
-      })}
-      {itemsLayout.length === nTabs && (
-        <Indicator
-          indexDecimal={indexDecimal}
-          itemsLayout={itemsLayout}
-          fadeIn={scrollEnabled}
-          style={indicatorStyle}
+      <View style={{ flexDirection: 'column', flex: 1 }}>
+        <View
+          style={{
+            marginTop: 10,
+            borderRadius: 10,
+            height: 5,
+            width: 60,
+            flex: 1,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'gray',
+          }}
         />
-      )}
+        {tabNames.map((name, i) => {
+          return (
+            <TabItemComponent
+              key={name}
+              index={i}
+              name={name}
+              label={tabProps.get(name)?.label || getLabelText(name)}
+              onPress={onTabPress}
+              onLayout={
+                scrollEnabled
+                  ? (event) => onTabItemLayout(event, name)
+                  : undefined
+              }
+              scrollEnabled={scrollEnabled}
+              indexDecimal={indexDecimal}
+              labelStyle={labelStyle}
+              activeColor={activeColor}
+              inactiveColor={inactiveColor}
+              style={tabStyle}
+            />
+          )
+        })}
+        {itemsLayout.length === nTabs && (
+          <Indicator
+            indexDecimal={indexDecimal}
+            itemsLayout={itemsLayout}
+            fadeIn={scrollEnabled}
+            style={indicatorStyle}
+          />
+        )}
+      </View>
     </Animated.ScrollView>
   )
 }
@@ -240,7 +269,7 @@ export { MemoizedTabBar as MaterialTabBar }
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     flexWrap: 'nowrap',
   },
 })
